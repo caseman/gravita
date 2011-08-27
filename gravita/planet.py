@@ -58,7 +58,7 @@ def create_planet(game_map, planet_type=None, location=None):
         if check_location(game_map, x, y):
             location = (x, y)
     return Planet(name='foobar', 
-        type=next_planet_type(),
+        type=planet_type or next_planet_type(),
         location=location)
 
 

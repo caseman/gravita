@@ -34,7 +34,7 @@ class PlanetTestCase(unittest.TestCase):
             (3,3), (2,3), (2,5), (0,7), (7,7)]:
             self.assertTrue(planet.check_location(map, x, y), (x, y))
 
-    def test_create_planet(self):
+    def test_create_planet_random(self):
         from gravita import planet
         map = self.make_map()
         map[5][5].planet = 'bar'
@@ -50,6 +50,15 @@ class PlanetTestCase(unittest.TestCase):
                 (4,6), (5,6), (7,6),], (x,y))
             self.assertTrue(p.name)
             self.assert_(p.type in planet.planet_types, p.type)
+
+    def test_create_planet(self):
+        from gravita import planet
+        map = self.make_map()
+        p = planet.create_planet(map, 'terran', (1,2))
+        self.assert_(isinstance(p, planet.Planet))
+        self.assertTrue(p.name)
+        self.assertEqual(p.type, 'terran')
+        self.assertEqual(p.location, (1,2))
 
 
 class DummySector(object):
