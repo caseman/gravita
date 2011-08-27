@@ -33,6 +33,6 @@ class GameTestCase(unittest.TestCase):
             sec = game.map[x][y]
             self.assert_(isinstance(sec, Sector))
         for x, y in [(3,5), (5,0), (100, 2)]:
-            self.assertRaises(IndexError, lambda: map[x][y])
+            self.assertRaises(IndexError, lambda: game.map[x][y])
 
 
