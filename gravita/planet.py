@@ -10,6 +10,7 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #
 #############################################################################
+from gravita import markov
 from collections import namedtuple
 import random
 import itertools
@@ -49,6 +50,20 @@ def check_location(game_map, x, y):
                 pass
     return True
 
+names = set()
+def generate_name():
+    """Generate a unique planet name"""
+    while 1:
+        name = markov.generate('data/planet_names.txt')
+        if len(name) > 3 and name not in names:
+            for existing in names:
+                if existing.startswith(name) or name.startswith(existing):
+                    break # Avoid names that prefix each other
+            else:
+                names.add(name)
+                return name
+
+
 def create_planet(game_map, planet_type=None, location=None):
     max_x = len(game_map) - 1
     max_y = len(game_map[0]) - 1
@@ -57,7 +72,7 @@ def create_planet(game_map, planet_type=None, location=None):
         y = random.randint(0, max_y)
         if check_location(game_map, x, y):
             location = (x, y)
-    return Planet(name='foobar', 
+    return Planet(name=generate_name(),
         type=planet_type or next_planet_type(),
         location=location)
 

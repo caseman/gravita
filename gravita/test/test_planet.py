@@ -34,6 +34,15 @@ class PlanetTestCase(unittest.TestCase):
             (3,3), (2,3), (2,5), (0,7), (7,7)]:
             self.assertTrue(planet.check_location(map, x, y), (x, y))
 
+    def test_generate_name(self):
+        from gravita import planet
+        names = set()
+        for i in range(100):
+            name = planet.generate_name()
+            self.assertFalse(name in names, name)
+            names.add(name)
+            print name
+
     def test_create_planet_random(self):
         from gravita import planet
         map = self.make_map()
