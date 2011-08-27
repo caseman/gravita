@@ -12,9 +12,9 @@
 #############################################################################
 from pyramid.config import Configurator
 
-def main(global_config, **settings):
+def main(global_config, _config_factory=Configurator, **settings):
     # paster serve entry point
-    config = Configurator(settings=settings)
+    config = _config_factory(settings=settings)
     config.scan('gravita')
     return config.make_wsgi_app()
 
