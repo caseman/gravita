@@ -10,7 +10,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #
 #############################################################################
-from gravita.map import Map
 
 class Game(object):
 
