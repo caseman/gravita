@@ -10,7 +10,6 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #
 #############################################################################
-from gravita import markov
 from collections import namedtuple
 import random
 import itertools
@@ -37,43 +36,19 @@ for ptype, likelyhood in planet_info:
 random.shuffle(planet_likelyhood)
 next_planet_type = itertools.cycle(planet_likelyhood).next
 
-def check_location(game_map, x, y):
-    """Return True if the x, y location on the game map is appropriate
-    for a planet.
-    """
-    for dx in (-1, 0, 1):
-        for dy in (-1, 0, 1):
-            try:
-                if game_map[x+dx][y+dy].planet is not None:
-                    return False
-            except IndexError:
-                pass
-    return True
+Yield = namedtuple("PlanetYield", "resources research bonus")
 
-names = set()
-def generate_name():
-    """Generate a unique planet name"""
-    while 1:
-        name = markov.generate('data/planet_names.txt')
-        if len(name) > 3 and name not in names:
-            for existing in names:
-                if existing.startswith(name) or name.startswith(existing):
-                    break # Avoid names that prefix each other
-            else:
-                names.add(name)
-                return name
-
-
-def create_planet(game_map, planet_type=None, location=None):
-    max_x = len(game_map) - 1
-    max_y = len(game_map[0]) - 1
-    while location is None:
-        x = random.randint(0, max_x)
-        y = random.randint(0, max_y)
-        if check_location(game_map, x, y):
-            location = (x, y)
-    return Planet(name=generate_name(),
-        type=planet_type or next_planet_type(),
-        location=location)
+base_yields = {
+    'barren': Yield(resources=1, research=0, bonus=1),
+    'desert': Yield(resources=1, research=1, bonus=2),
+    'giant': Yield(resources=2, research=1, bonus=2),
+    'inferno': Yield(resources=2, research=1, bonus=3),
+    'ocean': Yield(resources=3, research=2, bonus=6),
+    'radiated': Yield(resources=1, research=2, bonus=3),
+    'swamp': Yield(resources=3, research=2, bonus=6),
+    'terran': Yield(resources=3, research=2, bonus=6),
+    'toxic': Yield(resources=0, research=1, bonus=1),
+    'tundra': Yield(resources=1, research=2, bonus=4),
+}
 
 

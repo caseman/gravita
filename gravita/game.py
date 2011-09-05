@@ -10,17 +10,19 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #
 #############################################################################
-from gravita.sector import Sector
+from gravita.map import Map
 
 class Game(object):
 
-    def __init__(self, players):
+    def __init__(self, players, map):
+        assert len(players) == 2, 'Only two players are currently supported'
         self.players = players
-        self.map = []
+        self.map = map
         self.turn = 0
 
-    def init_map(self, width, height):
-        """Initialize an empty game map"""
-        self.map = tuple(tuple(Sector() for y in range(height)) 
-            for x in range(width))
+    def begin_turn(self):
+        """Begin a new turn in the game"""
+        self.turn += 1
+        for player in self.players:
+            player.begin_turn()
 

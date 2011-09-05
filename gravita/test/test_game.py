@@ -5,34 +5,32 @@ class GameTestCase(unittest.TestCase):
     def test_init_game(self):
         from gravita.game import Game
         players = ('foo', 'bar')
-        game = Game(players)
+        map = object()
+        game = Game(players, map)
         self.assertEqual(game.players, players)
-        self.assertEqual(len(game.map), 0)
+        self.assert_(game.map is map)
+        self.assertEqual(game.turn, 0)
 
-    def test_init_map(self):
+    def test_begin_turn(self):
         from gravita.game import Game
-        from gravita.sector import Sector
-        players = ('foo', 'bar')
-        game = Game(players)
-        game.init_map(10, 20)
-        self.assertEqual(len(game.map), 10)
-        for col in game.map:
-            self.assertEqual(len(col), 20)
-            for row in col:
-                self.assert_(isinstance(row, Sector), row)
-                self.assertEqual(row.planet, None)
-                self.assertEqual(row.ship, None)
+        p1, p2 = players = (MockPlayer(), MockPlayer())
+        game = Game(players, None)
+        self.assertEqual(p1.turn, 0)
+        self.assertEqual(p2.turn, 0)
+        game.begin_turn()
+        self.assertEqual(p1.turn, 1)
+        self.assertEqual(p2.turn, 1)
+        game.begin_turn()
+        self.assertEqual(p1.turn, 2)
+        self.assertEqual(p2.turn, 2)
 
-    def test_map_indexing(self):
-        from gravita.game import Game
-        from gravita.sector import Sector
-        players = ('foo', 'bar')
-        game = Game(players)
-        game.init_map(3, 5)
-        for x, y in [(0,0), (-1,-1), (2,4), (1,2)]:
-            sec = game.map[x][y]
-            self.assert_(isinstance(sec, Sector))
-        for x, y in [(3,5), (5,0), (100, 2)]:
-            self.assertRaises(IndexError, lambda: game.map[x][y])
+
+class MockPlayer(object):
+    
+    def __init__(self):
+        self.turn = 0
+
+    def begin_turn(self):
+        self.turn += 1
 
 
