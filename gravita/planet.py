@@ -36,7 +36,7 @@ for ptype, likelyhood in planet_info:
 random.shuffle(planet_likelyhood)
 next_planet_type = itertools.cycle(planet_likelyhood).next
 
-Yield = namedtuple("PlanetYield", "resources research bonus")
+Yield = namedtuple("Yield", "resources research bonus")
 
 base_yields = {
     'barren': Yield(resources=1, research=0, bonus=1),
