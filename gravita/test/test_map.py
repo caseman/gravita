@@ -11,7 +11,8 @@ class MapTestCase(unittest.TestCase):
     def test_sector_repr(self):
         from gravita.map import Map
         map = Map(3, 3)
-        self.assertEqual(repr(map[1,1]), '<Sector planet=None ship=None>')
+        self.assertEqual(repr(map[1,1]), 
+            '<Sector(1, 1) planet=None ship=None>')
 
     def test_map_indexing(self):
         from gravita.map import Map, Sector
@@ -98,6 +99,37 @@ class MapTestCase(unittest.TestCase):
         self.assertEqual(p1_planet.location, (3,2))
         self.assertEqual(p2_planet.type, 'ocean')
         self.assertEqual(p2_planet.location, (11,7))
+
+    def test_sectors_in_circle_small(self):
+        from gravita.map import Map
+        map = Map(7, 7)
+        sectors = map.sectors_in_circle((3, 3), 1)
+        self.assertEqual(sectors,
+            [map[2,2], map[3,2], map[4,2],
+             map[2,3], map[3,3], map[4,3],
+             map[2,4], map[3,4], map[4,4]], sectors)
+
+    def test_sectors_in_circle_larger(self):
+        from gravita.map import Map
+        map = Map(15, 15)
+        sectors = map.sectors_in_circle((5, 5), 3)
+        self.assertEqual(sectors,
+                               [map[4,2], map[5,2], map[6,2], 
+                      map[3,3], map[4,3], map[5,3], map[6,3], map[7,3],
+            map[2,4], map[3,4], map[4,4], map[5,4], map[6,4], map[7,4], map[8,4],
+            map[2,5], map[3,5], map[4,5], map[5,5], map[6,5], map[7,5], map[8,5],
+            map[2,6], map[3,6], map[4,6], map[5,6], map[6,6], map[7,6], map[8,6],
+                      map[3,7], map[4,7], map[5,7], map[6,7], map[7,7],
+                                map[4,8], map[5,8], map[6,8]])
+
+    def test_sectors_in_circle_off_map(self):
+        from gravita.map import Map
+        map = Map(5, 5)
+        sectors = map.sectors_in_circle((-1, -1), 2)
+        self.assertEqual(sectors,
+            [map[0,0], map[1,0],
+             map[0,1]], sectors)
+
 
 
 class MockPlayer(object):

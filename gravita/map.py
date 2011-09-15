@@ -24,7 +24,7 @@ class Map(object):
         self._sectors = {}
         for y in range(height):
             for x in range(width):
-                self._sectors[x, y] = Sector()
+                self._sectors[x, y] = Sector(x, y)
         self._available_sectors = set(self._sectors)
         self._names = set()
 
@@ -82,12 +82,34 @@ class Map(object):
             planets.append(home)
         return planets
 
+    def sectors_in_circle(self, center_location, radius):
+        """Return a list of sectors on the map within radius sectors
+        of the specified center location. Note the center location does
+        not need to be on the map.
+
+        The list of sectors is returned in lexicographical order.
+        """
+        cx, cy = center_location
+        sectors = []
+        limit = radius * radius + 1
+        for y in range(cy - radius, cy + radius + 1):
+            dy = y - cy
+            for x in range(cx - radius, cx + radius + 1):
+                dx = x - cx
+                if dx*dx + dy*dy <= limit:
+                    try:
+                        sectors.append(self[x, y])
+                    except KeyError:
+                        pass
+        return sectors
+
 
 class Sector(object):
 
-    def __init__(self):
+    def __init__(self, x, y):
         self.planet = None
         self.ship = None
+        self.location = (x, y)
 
     def __repr__(self):
-        return '<Sector planet=%r ship=%r>' % (self.planet, self.ship)
+        return '<Sector%r planet=%r ship=%r>' % (self.location, self.planet, self.ship)
