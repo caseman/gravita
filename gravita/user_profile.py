@@ -12,6 +12,7 @@
 #############################################################################
 import random
 import sys
+from gravita import markov
 
 _profiles = {}
 
@@ -30,6 +31,7 @@ class UserProfile(object):
             if self.profile_id not in _profiles:
                 _profiles[self.profile_id] = self
                 break
+        self.name = self.generate_name()
         self.game = None
 
     @classmethod
@@ -40,4 +42,12 @@ class UserProfile(object):
     def generate_id(self):
         """Generate a unique id for this profile"""
         return hex(id(self) ^ random.randint(sys.maxint >> 16, sys.maxint))[2:]
+
+    def generate_name(self):
+        """Generate a profile name"""
+        while 1:
+            name = markov.generate('data/profile_names.txt')
+            if len(name) >= 5:
+                return name
+
 

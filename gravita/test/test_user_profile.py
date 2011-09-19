@@ -12,6 +12,8 @@ class UserProfileTestCase(unittest.TestCase):
         for i in range(500):
             up = UserProfile()
             self.assertEqual(up.game, None)
+            self.assertTrue(up.name)
+            print up.name
             self.assertTrue(up.profile_id)
             self.assertTrue(isinstance(up.profile_id, str))
             self.assertTrue(up.profile_id not in ids)
