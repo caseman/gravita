@@ -11,10 +11,12 @@
 #
 #############################################################################
 from pyramid.config import Configurator
+from pyramid.static import static_view
 
 def main(global_config, _config_factory=Configurator, **settings):
     # paster serve entry point
     config = _config_factory(settings=settings)
+    config.add_static_view(name='/static', path='www')
     config.scan('gravita')
     return config.make_wsgi_app()
 

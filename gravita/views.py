@@ -10,6 +10,7 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #
 #############################################################################
+import os
 from pyramid.response import Response
 from pyramid.view import view_config
 
@@ -20,5 +21,7 @@ class GravitaView(object):
 
     @view_config()
     def main(self):
-        return Response('Gravita!')
+        here = os.path.dirname(__file__)
+        content = open(os.path.join(here, 'www', 'index.html'))
+        return Response(content_type='text/html', app_iter=content)
 
