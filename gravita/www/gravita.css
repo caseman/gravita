@@ -5,13 +5,13 @@ body {
     background: url('/static/images/starfield.jpg');
 }
 
-h1 {
+.panel .title {
     font-size: 2em;
     margin-bottom: 2em;
     text-shadow: 2px 2px 5px #112;
 }
 
-#title-screen {
+.panel {
     padding: 2em;
     margin: 3em;
     position: relative;
@@ -24,7 +24,7 @@ h1 {
     box-shadow: 0 0 100px #866;
 }
 
-#title-screen button {
+.panel button {
     border: 15px bezel;
     position: relative;
     right: -35%;
