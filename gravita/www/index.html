@@ -11,16 +11,47 @@
 <body onLoad="$gravita.load()">
 
 <div id="content"></div>
+
 <script id="title-template" type="text/x-jquery-template">
     <div id="title-screen" class="panel">
         <h1 class="title">Welcome to Gravita, ${name}</h1>
-        <button>Start a New Game</button>
+        <button onClick="$gravita.showTmpl('create-game-template')">Start a New Game</button>
         <button>Join a Game</button>
+    </div>
+</script>
+
+<script id="create-game-template" type="text/x-jquery-template">
+    <div id="create-game" class="panel">
+        <h1 class="title">Create a New Game</h1>
+        <form id="create-game-form" action="javascript:$gravita.createGame()">
+            <div class="group">
+                <h2 class="title">Your Race</h2>
+                <label><input name="race" type="radio" value="human"/> Human</label>
+                <label><input name="race" type="radio" value="naree"/> Naree</label>
+                <label><input name="race" type="radio" value="rone"/> Rone</label>
+            </div>
+            <div class="group">
+                <h2 class="title">Map Size</h2>
+                <label><input name="map_size" type="radio" value="64"/> Large (64 x 64)</label>
+                <label><input name="map_size" type="radio" value="32"/> Medium (32 x 32)</label>
+                <label><input name="map_size" type="radio" value="16"/> Small (16 x 16)</label>
+            </div>
+            <div class="group">
+                <h2 class="title">Planet Density</h2>
+                <label><input name="density" type="radio" value="high"/> High</label>
+                <label><input name="density" type="radio" value="medium"/> Medium</label>
+                <label><input name="density" type="radio" value="low"/> Low</label>
+            </div>
+            <button type="submit">Create Game</button>
+            <button onClick="$gravita.showTmpl('title-template', $gravita.profile_info)"
+                >Cancel</button>
+        </form>
     </div>
 </script>
 
 <script>
     $("#title-template").template("title-template");
+    $("#create-game-template").template("create-game-template");
 </script>
 
 </body>

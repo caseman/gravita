@@ -4,10 +4,16 @@
 
 $gravita = {}
 
+$gravita.showTmpl = function(template, data) {
+    $("#content").empty();
+    $.tmpl(template, data).appendTo("#content");
+}
+
 $gravita.load = function() {
     $.get('/profile_info', '', function(user) {
+        $gravita.profile_info = user;
         if (!user.in_game) {
-            $.tmpl("title-template", user).appendTo("#content");
+            $gravita.showTmpl("title-template", user);
         }
     });
 }

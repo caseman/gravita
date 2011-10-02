@@ -5,13 +5,20 @@ body {
     background: url('/static/images/starfield.jpg');
 }
 
-.panel .title {
-    font-size: 2em;
-    margin-bottom: 2em;
+.title {
     text-shadow: 2px 2px 5px #112;
 }
 
+#title-screen .title {
+    margin-bottom: 2em;
+}
+
+.panel > .title {
+    font-size: 2em;
+}
+
 .panel {
+    min-width: 640px;
     padding: 2em;
     margin: 3em;
     position: relative;
@@ -27,8 +34,6 @@ body {
 .panel button {
     border: 15px bezel;
     position: relative;
-    right: -35%;
-    display: block;
     height: 2em;
     width: 22ex;
     color: blue;
@@ -40,4 +45,33 @@ body {
     -webkit-border-radius: 10px 0 10px 0;
     border-radius:  12px 0 12px 0;
 }
+
+.panel button:hover {
+    box-shadow: 0 0 40px #c77;
+}
+
+#title-screen button {
+    right: -35%;
+    display: block;
+}
+
+form > .group {
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 2px darkgray solid;
+    background: url('/static/images/highlight.png');
+    box-shadow: 0 0 50px #866;
+    float: left;
+}
+
+form > .group > .title {
+    position: relative;
+    top: -10px;
+}
+
+label {
+    margin: 0.5em;
+    display: block;
+}
+
 
