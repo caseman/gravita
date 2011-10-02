@@ -2,7 +2,42 @@ body {
     background-color: black;
     color: lightyellow;
     font-family: 'Orbitron', sans-serif;
+    background: url('/static/images/starfield.jpg');
 }
+
 h1 {
     font-size: 2em;
+    margin-bottom: 2em;
+    text-shadow: 2px 2px 5px #112;
 }
+
+#title-screen {
+    padding: 2em;
+    margin: 3em;
+    position: relative;
+    height: 100%;
+    background: url('/static/images/highlight.png');
+    border: #235 solid 12px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 50px 0 50px 0;
+    box-shadow: 0 0 100px #866;
+}
+
+#title-screen button {
+    border: 15px bezel;
+    position: relative;
+    right: -35%;
+    display: block;
+    height: 2em;
+    width: 22ex;
+    color: blue;
+    text-shadow: -1px -1px 3px #fff;
+    font-size: 1.25em;
+    font-family: 'Orbitron', sans-serif;
+    margin: 1.5em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 10px 0 10px 0;
+    border-radius:  12px 0 12px 0;
+}
+

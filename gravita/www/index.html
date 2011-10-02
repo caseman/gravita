@@ -4,17 +4,24 @@
     <title>Gravita</title>
     <script src="/static/lib/jquery.js"></script>
     <script src="/static/lib/jquery.tmpl.js"></script>
+    <script src="/static/gravita.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Orbitron:400,500,700' rel='stylesheet' type='text/css'>
     <link href="/static/gravita.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body onLoad="$gravita.load()">
 
+<div id="content"></div>
 <script id="title-template" type="text/x-jquery-template">
     <div id="title-screen">
-        <h1 id="title">Welcome to Gravita, ${username}</h1>
+        <div id="box"></div>
+        <h1 id="title">Welcome to Gravita, ${name}</h1>
         <button>Start a New Game</button>
         <button>Join a Game</button>
     </div>
+</script>
+
+<script>
+    $("#title-template").template("title-template");
 </script>
 
 </body>
