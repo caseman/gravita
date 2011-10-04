@@ -13,14 +13,24 @@
 
 class Game(object):
 
-    def __init__(self, players, map):
-        assert len(players) == 2, 'Only two players are currently supported'
-        self.players = players
+    def __init__(self, map):
+        self.players = []
         self.map = map
         self.turn = 0
 
+    @property
+    def in_progress(self):
+        return self.turn > 0
+
+    def add_player(self, player):
+        assert len(self.players) < 2, 'Only two players are currently supported'
+        assert not self.in_progress, 'Cannot add player, game already started'
+        assert player not in self.players, 'Player already added to this game'
+        self.players.append(player)
+
     def begin_turn(self):
         """Begin a new turn in the game"""
+        assert len(self.players) == 2, 'Too few players to start game'
         self.turn += 1
         for player in self.players:
             player.begin_turn()
