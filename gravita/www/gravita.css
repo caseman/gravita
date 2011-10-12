@@ -3,6 +3,10 @@ body {
     color: lightyellow;
     font-family: 'Orbitron', sans-serif;
     background: url('/static/images/starfield.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .title {
@@ -73,6 +77,29 @@ label {
     margin: 0.5em;
     display: block;
     text-shadow: 0 0 2px black;
+}
+
+.map {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.map td {
+    width: 64px;
+    height: 64px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px dotted #335;
+}
+
+.map td:hover {
+    border: 1px solid #557;
+    box-shadow: 0 0 10px #fff;
+}
+
+.map img.planet {
+    width: 60px;
+    height: 60px;
 }
 
 

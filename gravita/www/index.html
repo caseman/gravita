@@ -38,9 +38,9 @@
             </div>
             <div class="group">
                 <h2 class="title">Planet Density</h2>
-                <label><input name="density" type="radio" value="high"/> High</label>
-                <label><input name="density" type="radio" value="medium"/> Medium</label>
-                <label><input name="density" type="radio" value="low"/> Low</label>
+                <label><input name="density" type="radio" value="0.075"/> High</label>
+                <label><input name="density" type="radio" value="0.05"/> Medium</label>
+                <label><input name="density" type="radio" value="0.025"/> Low</label>
             </div>
             <button type="submit">Create Game</button>
             <button onClick="$gravita.showTmpl('title-template', $gravita.profile_info)"
@@ -49,9 +49,33 @@
     </div>
 </script>
 
+<script id="map-template" type="text/x-jquery-template">
+    <table class="map">
+        {{each(y, row) sectors}}
+        <tr>
+            {{each(x, sector) row}}
+            <td>
+                <a name="${x},${y}">
+                {{if sector.planet}}
+                    <img class="planet" 
+                         src="/static/images/planets/${sector.planet.type + (((x+y*2) % 3) + 1)}.png"
+                         title="${sector.planet.name}"/>
+                {{else}}
+                    &nbsp;
+                {{/if}}
+                </a>
+            </td>
+            {{/each}}
+        </tr>
+        {{/each}}
+    </table>
+</script>
+
 <script>
+    // Compile templates
     $("#title-template").template("title-template");
     $("#create-game-template").template("create-game-template");
+    $("#map-template").template("map-template");
 </script>
 
 </body>

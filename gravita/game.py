@@ -11,6 +11,9 @@
 #
 #############################################################################
 
+active_games = []
+
+
 class Game(object):
 
     def __init__(self, map):
@@ -34,4 +37,5 @@ class Game(object):
         self.turn += 1
         for player in self.players:
             player.begin_turn()
+
 

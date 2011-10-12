@@ -14,7 +14,7 @@ from gravita import planet
 
 
 class Race(object):
-    """Gravtia race base class"""
+    """Gravita race base class"""
 
     home_planet_type = None
     planet_yields = {}
@@ -38,3 +38,8 @@ class Human(Race):
     planet_yields['desert'] = planet.Yield(resources=3, research=2, bonus=4)
 
 
+races = {
+    'human': Human(),
+    'naree': Human(),
+    'rone': Human(),
+}

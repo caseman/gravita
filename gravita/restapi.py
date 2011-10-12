@@ -12,6 +12,10 @@
 #############################################################################
 from pyramid.view import view_config
 from gravita.user_profile import UserProfile
+from gravita.player import Player
+from gravita.race import races
+from gravita.game import Game, active_games
+from gravita.map import Map
 
 
 class RestApi(object):
@@ -42,5 +46,21 @@ class RestApi(object):
             'is_new': is_new,
             }
 
+    @view_config(name='create_game', renderer='json', request_method='POST')
+    def create_game(self):
+        params = self.request.POST
+        profile, is_new = self.get_user_profile()
+        map_width = map_height = int(params['map_size'])
+        game_map = Map(map_width, map_height)
+        game_map.add_planets(int(float(params['density']) * map_width * map_height))
+        profile.game = Game(game_map)
+        profile.game.add_player(Player(profile.name, races[params['race']]))
+        active_games.append(profile.game)
+        return profile.game.map.as_dict()
+
+    @view_config(name='map', renderer='json')
+    def map(self):
+        profile, is_new = self.get_user_profile()
+        return profile.game.map.as_dict()
 
 

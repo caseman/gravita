@@ -103,6 +103,16 @@ class Map(object):
                         pass
         return sectors
 
+    def as_dict(self):
+        d = {}
+        d['width'] = self.width
+        d['height'] = self.height
+        sectors = self._sectors
+        d['sectors'] = [
+            [sectors[x, y].as_dict() for x in range(self.width)]
+            for y in range(self.height)]
+        return d
+
 
 class Sector(object):
 
@@ -110,6 +120,15 @@ class Sector(object):
         self.planet = None
         self.ship = None
         self.location = (x, y)
+
+    def as_dict(self):
+        d = {}
+        if self.planet is not None:
+            pname, ptype, _ = self.planet
+            d['planet'] = {'name': pname, 'type': ptype}
+        if self.ship is not None:
+            d['ship']
+        return d
 
     def __repr__(self):
         return '<Sector%r planet=%r ship=%r>' % (self.location, self.planet, self.ship)
