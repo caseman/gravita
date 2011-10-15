@@ -1,0 +1,915 @@
+/** Human **/
+
+.human {
+	width: 76px;
+	height: 48px;
+}
+
+.human * {
+	background-image: url('/static/images/human/ship-parts.png');
+	background-repeat: no-repeat;
+	position: absolute;
+	width: 76px;
+}
+
+.human .C0 {
+	-webkit-transform: scale(0.5, 0.65);
+}
+
+.human .C1 {
+	-webkit-transform: scale(0.6, 0.8);
+}
+
+.human .C2 {
+	-webkit-transform: scale(0.5, 0.6);
+}
+
+.human .C3 {
+	-webkit-transform: scale(0.7, 0.85);
+}
+
+.human .C4 {
+	-webkit-transform: scale(0.75);
+}
+
+
+.human .nose {
+	z-index: 101;
+	left: 12px;
+	width: 52px;
+}
+
+.human .C0 .nose {
+	height: 20px;
+}
+
+.human .C1 .nose {
+	height: 22px;
+	-webkit-transform: scale(0.7, 1.0);
+}
+
+.human .C2 .nose, .human .C3 .nose {
+	height: 32px;
+}
+
+.human .C4 .nose {
+	height: 40px;
+}
+
+.human .tail {
+	z-index: 101;
+	left: 12px;
+	width: 52px;
+	height: 32px;
+	background-position: 0px -74px;
+}
+
+.human .C0 .tail {
+	top: 28px;
+	-webkit-transform: scale(1.0, 1.5);
+	background-position: 0px -84px;
+}
+
+.human .C1 .tail {
+	top: 22px;
+	background-position: 0px -90px;
+	-webkit-transform: scale(0.90, 1.0);
+}
+
+.human .C2 .tail, .human .C3 .tail {
+	top: 32px;
+}
+
+.human .C4 .tail {
+	top: 40px;
+}
+
+.human .L2 .pylon {
+	z-index: 103;
+	width: 76px;
+	height: 16px;
+	background-position: -52px -50px;
+}
+
+.human .L3 .pylon {
+	z-index: 103;
+	width: 76px;
+	height: 21px;
+	background-position: -52px -65px;
+}
+
+.human .L0 .pylon {
+	z-index: 103;
+	width: 76px;
+	height: 18px;
+	background-position: -52px -87px;
+}
+
+.human .L1 .pylon {
+	z-index: 103;
+	width: 76px;
+	height: 22px;
+	background-position: -52px -106px;
+}
+
+.human .C0 .pylon {
+	top: 22px;
+	-webkit-transform: scale(0.4, 1.2);
+}
+
+.human .C1 .pylon {
+	-webkit-transform: scale(0.6, 0.8);
+	top: 8px;
+}
+
+.human .C2 .pylon {
+	top: 14px;
+	-webkit-transform: scale(0.8, 1.3);
+}
+
+.human .C3 .pylon {
+	top: 35px;
+	-webkit-transform: scale(0.4, 1.3);
+}
+
+.human .C4 .front .pylon {
+	top: 17px;
+	-webkit-transform: scale(0.9, 1.1);
+}
+
+.human .C4 .rear .pylon {
+	top: 43px;
+	-webkit-transform: scale(0.45, 1.0);
+}
+
+.human .engine {
+	z-index: 102;
+	width: 12px;
+	height: 50px;
+	background-position: -52px 0px;
+}
+
+.human .V1 .engine {
+	background-position: -65px 0px;
+}
+
+.human .V2 .engine {
+	background-position: -78px 0px;
+}
+
+.human .V3 .engine {
+	background-position: -90px 0px;
+}
+
+.human .V4 .engine {
+	background-position: -103px 0px;
+}
+
+.human .C0 .engine {
+	-webkit-transform: scale(1.5, 0.7);
+}
+
+
+.human .C1 .engine {
+	-webkit-transform: scale(1.5, 0.7);
+	z-index: 100;
+}
+
+
+.human .C0 .left .engine {
+	top: 8px;
+	left: 23px;
+}
+
+.human .C0 .right .engine {
+	top: 8px;
+	left: 41px;
+}
+
+.human .C1 .front .engine {
+	top: -2px;
+}
+
+.human .C1 .left .engine {
+	left: 16px;
+}
+
+.human .C1 .right .engine {
+	left: 48px;
+}
+
+.human .C2 .front .engine {
+	top: 8px;
+	-webkit-transform: scale(1.2, 1.0);
+}
+
+.human .C2 .left .engine {
+	left: 3px;
+}
+
+.human .C2 .right .engine {
+	left: 60px;
+}
+
+.human .C0 .rear, .human .C1 .rear, .human .C2 .rear {
+	display: none;
+}
+
+.human .C3 .left .front .engine {
+	-webkit-transform: scale(1.2, 1.0);
+	top: 20px;
+	left: 19px;
+}
+
+.human .C3 .right .front .engine {
+	-webkit-transform: scale(1.2, 1.0);
+	top: 20px;
+	left: 45px;
+}
+
+.human .C3 .left .rear .engine {
+	-webkit-transform: scale(1.2, 1.2);
+	z-index: 100;
+	top: 19px;
+	left: 32px;
+}
+
+.human .C3 .right .rear .engine, .human .C3 .right .rear .pylon {
+	display: none;
+}
+
+.human .C4 .left .front .engine {
+	-webkit-transform: scale(1.2, 0.9);
+	left: 1px;
+	top: 7px;
+}
+
+.human .C4 .right .front .engine {
+	-webkit-transform: scale(1.2, 0.9);
+	top: 7px;
+	left: 63px;
+}
+
+.human .C4 .left .rear .engine {
+	-webkit-transform: scale(1.0, 0.8);
+	top: 30px;
+	left: 18px;
+}
+
+.human .C4 .right .rear .engine {
+	-webkit-transform: scale(1.0, 0.8);
+	top: 30px;
+	left: 46px;
+}
+
+
+/** Naree **/
+
+.naree {
+	width: 68px;
+	height: 55px;
+}
+
+.naree * {
+	background-image: url('/static/images/naree/ship-parts.png');
+	background-repeat: no-repeat;
+	position: absolute;
+	width: 76px;
+}
+
+.naree .C0 {
+	-webkit-transform: translateX(11px) scale(0.6, 0.9);
+}
+
+.naree .C1 {
+	-webkit-transform: scale(0.6, 0.8);
+}
+
+.naree .C2 {
+	-webkit-transform: scale(0.6, 0.8);
+}
+
+.naree .C3 {
+	-webkit-transform: scale(0.65);
+}
+
+.naree .C4 {
+	-webkit-transform: scale(0.6);
+}
+
+
+.naree .nose {
+	z-index: 101;
+}
+
+.naree .C0 .nose {
+	left: -1px;
+	width: 14px;
+	height: 42px;
+	background-position: -9px -26px;
+	-webkit-transform: scale(1.1, 0.9);
+}
+
+.naree .C0 .tail {
+	width: 13px;
+	height: 42px;
+	left: 15px;
+	background-position: -30px -26px;
+	-webkit-transform: scale(1.1, 0.9);
+}
+
+.naree .C1 .nose {
+	width: 30px;
+	height: 40px;
+	left: 8px;
+	background-position: -11px -26px;
+}
+
+
+.naree .C1 .tail {
+	width: 48px;
+	height: 49px;
+	top: 3px;
+	left: -1px;
+	background-position: -2px -77px;
+	-webkit-transform: scale(1.0, 0.3);
+}
+
+.naree .C2 .nose {
+	width: 34px;
+	height: 46px;
+	left: 8px;
+	background-position: -9px -26px;
+}
+
+.naree .C2 .tail {
+	width: 48px;
+	height: 49px;
+	top: 13px;
+	left: 1px;
+	background-position: -2px -77px;
+	-webkit-transform: scale(1.0, 0.5);
+}
+
+.naree .C3 .nose {
+	width: 34px;
+	height: 60px;
+	left: 8px;
+	-webkit-transform: scale(1, 1.2);
+	background-position: -9px -26px;
+}
+
+.naree .C3 .tail {
+	width: 48px;
+	height: 46px;
+	top: 30px;
+	left: 1px;
+	background-position: -2px -77px;
+	-webkit-transform: scale(1.1, 0.7);
+}
+
+.naree .C4 .nose {
+	width: 48px;
+	height: 100px;
+	left: 8px;
+	background-position: -2px -26px;
+}
+
+.naree .C4 .tail {
+	display: none;
+}
+
+.naree .engine {
+	width: 24px;
+	height: 18px;
+}
+
+.naree .V0 .engine {
+	background-position: -1px -3px;
+}
+
+.naree .V1 .engine {
+	background-position: -27px -3px;
+}
+
+.naree .V2 .engine {
+	background-position: -53px -3px;
+}
+
+.naree .V3 .engine {
+	background-position: -78px -3px;
+}
+
+.naree .V4 .engine {
+	background-position: -104px -3px;
+}
+
+.naree .C0 .left .engine {
+	-webkit-transform: scale(0.75, 0.5);
+	top: 33px;
+	left: 2px;
+}
+
+.naree .C0 .right .engine {
+	display: none;
+}
+
+.naree .C1 .left .engine {
+	-webkit-transform: scale(1.2, 0.5);
+	top: 33px;
+	left: 12px;
+}
+
+.naree .C1 .right .engine {
+	display: none;
+}
+
+.naree .C2 .left .engine {
+	-webkit-transform: scale(0.8, 0.6);
+	top: 43px;
+	left: 3px;
+	z-index: 105;
+}
+
+.naree .C2 .right .engine {
+	-webkit-transform: scale(0.8, 0.6);
+	top: 43px;
+	left: 24px;
+	z-index: 105;
+}
+
+.naree .C3 .right .rear .engine {
+	-webkit-transform: scale(0.8, 0.6);
+	top: 65px;
+	left: 27px;
+	z-index: 105;
+}
+
+.naree .C3 .left .rear .engine {
+	-webkit-transform: scale(0.8, 0.6);
+	top: 65px;
+	left: 0px;
+	z-index: 105;
+}
+
+
+.naree .C3 .front .engine {
+	-webkit-transform: scale(1.0, 0.6);
+	top: 62px;
+	left: 14px;
+	z-index: 106;
+}
+
+.naree .C4 .right .rear .engine {
+	-webkit-transform: scale(0.8, 0.6);
+	top: 95px;
+	left: 28px;
+	z-index: 105;
+}
+
+.naree .C4 .left .rear .engine {
+	-webkit-transform: scale(0.8, 0.6);
+	top: 95px;
+	left: 12px;
+	z-index: 105;
+}
+
+.naree .C4 .left .front .engine {
+	-webkit-transform: scale(1.0, 0.6);
+	top: 88px;
+	left: 9px;
+	z-index: 106;
+}
+
+.naree .C4 .right .front .engine {
+	-webkit-transform: scale(1.0, 0.6);
+	top: 88px;
+	left: 32px;
+	z-index: 106;
+}
+
+.naree .L0 .front .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -92px -78px;
+}
+
+.naree .L0 .rear .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -108px -78px;
+}
+
+.naree .L1 .front .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -91px -27px;
+}
+
+.naree .L1 .rear .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -110px -27px;
+}
+
+.naree .L2 .front .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -53px -79px;
+}
+
+.naree .L2 .rear .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -70px -79px;
+}
+
+.naree .L3 .front .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -53px -79px;
+}
+
+.naree .L2 .rear .pylon {
+	width: 17px;
+	height: 33px;
+	background-position: -70px -79px;
+}
+
+.naree .L3 .front .pylon {
+	width: 17px;
+	height: 47px;
+	background-position: -52px -27px;
+}
+
+.naree .L3 .rear .pylon {
+	width: 17px;
+	height: 47px;
+	background-position: -71px -27px;
+}
+
+.naree .C0 .front .pylon {
+	top: 9px;
+	left: -6px;
+	-webkit-transform: scale(1, 0.7);
+}
+	
+.naree .C0 .rear .pylon {
+	top: 9px;
+	left: 16px;
+	-webkit-transform: scale(1, 0.7);
+}
+
+.naree .C1 .front .pylon {
+	top: 10px;
+	left: -4px;
+	-webkit-transform: scale(1, 0.6);
+}
+	
+.naree .C1 .rear .pylon {
+	top: 10px;
+	left: 33px;
+	-webkit-transform: scale(1, 0.6);
+}
+
+.naree .C2 .front .pylon {
+	top: 16px;
+	left: -7px;
+	-webkit-transform: scale(1, 0.75);
+}
+	
+.naree .C2 .rear .pylon {
+	top: 16px;
+	left: 40px;
+	-webkit-transform: scale(1, 0.75);
+}
+
+.naree .C3 .front .pylon {
+	top: 38px;
+	left: -12px;
+	-webkit-transform: scale(1, 0.75);
+}
+	
+.naree .C3 .rear .pylon {
+	top: 38px;
+	left: 45px;
+	-webkit-transform: scale(1, 0.75);
+}
+
+.naree .C4 .front .pylon {
+	top: 60px;
+	left: -7px;
+}
+	
+.naree .C4 .rear .pylon {
+	top: 60px;
+	left: 54px;
+}
+
+
+/** Rone **/
+
+.rone {
+	width: 68px;
+	height: 55px;
+}
+
+.rone * {
+	background-image: url('/static/images/rone/ship-parts.png');
+	background-repeat: no-repeat;
+	position: absolute;
+	width: 76px;
+}
+
+.rone .C0 {
+	-webkit-transform: scale(0.9, 0.9);
+}
+
+.rone .C1 {
+	-webkit-transform: scale(0.9, 1.0);
+}
+
+.rone .C2 {
+	-webkit-transform: scale(0.7, 0.8);
+}
+
+.rone .C3 {
+	-webkit-transform: scale(0.85);
+}
+
+/*
+.rone .C4 {
+	-webkit-transform: scale(0.6);
+}
+*/
+
+.rone .nose {
+	z-index: 101;
+}
+
+.rone .C0 .nose {
+	left: -1px;
+	width: 15px;
+	height: 34px;
+	background-position: 0 -26px;
+}
+
+.rone .C0 .tail {
+	left: 14px;
+	width: 15px;
+	height: 34px;
+	background-position: -36px -26px;
+}
+
+.rone .C1 .nose {
+	left: -1px;
+	width: 18px;
+	height: 42px;
+	background-position: 0 -26px;
+}
+
+.rone .C1 .tail {
+	left: 17px;
+	width: 18px;
+	height: 42px;
+	background-position: -33px -26px;
+}
+
+.rone .C2 .nose {
+	width: 50px;
+	height: 39px;
+	background-position: 0 -26px;
+}
+
+.rone .C2 .tail {
+	top: 34px;
+	width: 50px;
+	height: 19px;
+	-webkit-transform: scale(1.0, 0.6);
+	background-position: 0px -88px;
+}
+
+.rone .C3 .nose {
+	width: 50px;
+	height: 34px;
+	background-position: 0 -26px;
+}
+
+.rone .C3 .tail {
+	top: 31px;
+	width: 50px;
+	height: 32px;
+	-webkit-transform: scale(0.8);
+	background-position: 0px -70px;
+}
+
+.rone .C4 .nose {
+	width: 50px;
+	height: 84px;
+	background-position: 0 -26px;
+}
+
+.rone .C4 .tail {
+	display: none;
+}
+
+.rone .engine {
+	width: 24px;
+	height: 18px;
+}
+
+.rone .V0 .engine {
+	background-position: -1px -4px;
+}
+
+.rone .V1 .engine {
+	background-position: -27px -3px;
+}
+
+.rone .V2 .engine {
+	background-position: -52px -3px;
+}
+
+.rone .V3 .engine {
+	background-position: -78px -4px;
+}
+
+.rone .V4 .engine {
+	background-position: -103px -3px;
+}
+
+.rone .C0 .left .engine {
+	top: 26px;
+	left: 2px;
+	-webkit-transform: scale(0.7, 0.9);
+}
+
+.rone .C0 .right .engine {
+	display: none;
+}
+
+.rone .C1 .left .engine {
+	top: 37px;
+	left: -1px;
+	-webkit-transform: scale(0.4);
+}
+
+.rone .C1 .right .engine {
+	top: 37px;
+	left: 11px;
+	-webkit-transform: scale(0.4);
+}
+
+.rone .C2 .left .engine {
+	top: 44px;
+	left: 2px;
+	-webkit-transform: scale(0.8, 0.5);
+	z-index: 110;
+}
+
+.rone .C2 .right .engine {
+	top: 44px;
+	left: 25px;
+	-webkit-transform: scale(0.8, 0.5);
+	z-index: 110;
+}
+
+.rone .C3 .left .engine {
+	top: 51px;
+	left: 2px;
+	-webkit-transform: scale(0.7, 0.5);
+	z-index: 110;
+}
+
+.rone .C3 .right .engine {
+	top: 51px;
+	left: 25px;
+	-webkit-transform: scale(0.7, 0.5);
+	z-index: 110;
+}
+
+.rone .C4 .left .front .engine {
+	top: 77px;
+	left: 2px;
+	-webkit-transform: scale(0.7);
+	z-index: 110;
+}
+
+.rone .C4 .left .rear .engine {
+	top: 78px;
+	left: 13px;
+	-webkit-transform: scale(0.8);
+	z-index: 111;
+}
+
+
+.rone .C4 .right .engine {
+	top: 77px;
+	left: 25px;
+	-webkit-transform: scale(0.7);
+	z-index: 110;
+}
+
+
+.rone .L0 .pylon {
+	display: none;
+
+}
+
+.rone .L3 .front .pylon {
+	width: 17px;
+	height: 48px;
+	background-position: -50px -27px;
+}
+
+.rone .L3 .rear .pylon {
+	width: 17px;
+	height: 48px;
+	background-position: -73px -27px;
+}
+
+.rone .L2 .front .pylon {
+	width: 19px;
+	height: 48px;
+	background-position: -90px -27px;
+}
+
+.rone .L2 .rear .pylon {
+	width: 19px;
+	height: 48px;
+	background-position: -110px -27px;
+}
+
+.rone .L1 .front .pylon {
+	width: 19px;
+	height: 58px;
+	background-position: -54px -80px;
+}
+
+.rone .L1 .rear .pylon {
+	width: 19px;
+	height: 58px;
+	background-position: -108px -80px;
+}
+
+.rone .C0 .front .pylon {
+	left: -10px;
+	top: 1px;
+	-webkit-transform: scale(0.7, 0.5);
+}
+
+.rone .C0 .rear .pylon {
+	left: 20px;
+	top: 1px;
+	-webkit-transform: scale(0.7, 0.5);
+}
+
+.rone .C1 .front .pylon {
+	left: -11px;
+	top: 1px;
+	-webkit-transform: scale(0.8, 0.5);
+}
+
+.rone .C1 .rear .pylon {
+	left: 27px;
+	top: 1px;
+	-webkit-transform: scale(0.8, 0.5);
+}
+
+.rone .C2 .front .pylon {
+	left: -9px;
+	top: 4px;
+	-webkit-transform: scale(1.0, 0.8);
+}
+
+.rone .C2 .rear .pylon {
+	left: 42px;
+	top: 4px;
+	-webkit-transform: scale(1.0, 0.8);
+}
+
+.rone .C3 .front .pylon {
+	left: -8px;
+	top: 13px;
+	-webkit-transform: scale(1.1, 0.8);
+}
+
+.rone .C3 .rear .pylon {
+	left: 41px;
+	top: 13px;
+	-webkit-transform: scale(1.1, 0.8);
+}
+
+.rone .C4 .front .pylon {
+	left: -11px;
+	top: 20px;
+	-webkit-transform: scale(1.0, 1.2);
+}
+
+.rone .C4 .rear .pylon {
+	left: 44px;
+	top: 20px;
+	-webkit-transform: scale(1.0, 1.2);
+}
+
+
