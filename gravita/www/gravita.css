@@ -7,6 +7,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    margin: 0;
 }
 
 .title {
@@ -90,16 +91,20 @@ label {
     text-align: center;
     vertical-align: middle;
     border: 1px dotted #335;
+    margin: 0;
+    padding: 0;
 }
 
 .map td:hover {
     border: 1px solid #557;
-    box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 30px #77a;
 }
 
-.map img.planet {
-    width: 60px;
-    height: 60px;
+.ships {
+    position: relative;
 }
 
+.ships > * {
+    position: absolute;
+}
 

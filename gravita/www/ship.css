@@ -13,7 +13,7 @@
 }
 
 .human .C0 {
-	-webkit-transform: scale(0.5, 0.65);
+	-webkit-transform: scale(0.5, 0.65) translate(0, 15px);
 }
 
 .human .C1 {
@@ -21,7 +21,7 @@
 }
 
 .human .C2 {
-	-webkit-transform: scale(0.5, 0.6);
+	-webkit-transform: scale(0.5, 0.6) translate(0, 10px);
 }
 
 .human .C3 {
@@ -29,7 +29,7 @@
 }
 
 .human .C4 {
-	-webkit-transform: scale(0.75);
+	-webkit-transform: scale(0.75) translate(0, -4px);
 }
 
 

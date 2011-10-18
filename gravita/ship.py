@@ -10,6 +10,7 @@
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #
 #############################################################################
+from collections import namedtuple
 
 class Ship(object):
 
@@ -19,6 +20,10 @@ class Ship(object):
         self.location = location
         self.map[location].ship = self
         self.specs = specs
+        self.id = hex(id(self))[2:]
+        self.level = 0
+        self.variant = id(self) % 3
+        #map.ships[self.id] = self
 
     def available_moves(self):
         return [sector for sector in 
@@ -32,4 +37,20 @@ class Ship(object):
         self.map[location].ship = self
         self.location = location
         return old_location, self.location
+
+    def as_dict(self):
+        return {
+            'cls': self.specs.cls, 
+            'name': self.specs.name,
+            'descr': self.specs.descr,
+            'id':self.id,
+            'race': self.specs.race,
+            'level': self.level, 
+            'variant': self.variant,
+            'x': self.location[0],
+            'y': self.location[1],
+            }
+
+
+Spec = namedtuple("Spec", "cls name descr race range cost")
 

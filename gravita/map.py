@@ -60,7 +60,8 @@ class Map(object):
         p = self[location].planet = planet.Planet(
             name=self.generate_planet_name(),
             type=planet_type or planet.next_planet_type(),
-            location=location)
+            location=location,
+            size=random.random() * 0.7 + 0.3)
         return p
 
     def add_planets(self, count):
@@ -107,10 +108,16 @@ class Map(object):
         d = {}
         d['width'] = self.width
         d['height'] = self.height
-        sectors = self._sectors
-        d['sectors'] = [
-            [sectors[x, y].as_dict() for x in range(self.width)]
-            for y in range(self.height)]
+        d['sectors'] = sectors = []
+        d['ships'] = ships = {}
+        for y in range(self.height):
+            row = []
+            for x in range(self.width):
+                sec = self._sectors[x, y]
+                row.append(sec.as_dict())
+                if sec.ship is not None:
+                    ships[sec.ship.id] = sec.ship.as_dict()
+            sectors.append(row)
         return d
 
 
@@ -124,10 +131,8 @@ class Sector(object):
     def as_dict(self):
         d = {}
         if self.planet is not None:
-            pname, ptype, _ = self.planet
-            d['planet'] = {'name': pname, 'type': ptype}
-        if self.ship is not None:
-            d['ship']
+            pname, ptype, _, size = self.planet
+            d['planet'] = {'name': pname, 'type': ptype, 'size': size}
         return d
 
     def __repr__(self):

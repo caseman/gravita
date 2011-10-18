@@ -14,7 +14,7 @@ from collections import namedtuple
 import random
 import itertools
 
-Planet = namedtuple("Planet", "name type location")
+Planet = namedtuple("Planet", "name type location size")
 
 planet_info = (
     ('barren', 5),
@@ -44,10 +44,10 @@ base_yields = {
     'giant': Yield(resources=2, research=1, bonus=2),
     'inferno': Yield(resources=2, research=1, bonus=3),
     'ocean': Yield(resources=3, research=2, bonus=6),
-    'radiated': Yield(resources=1, research=2, bonus=3),
+    'radiated': Yield(resources=0, research=1, bonus=3),
     'swamp': Yield(resources=3, research=2, bonus=6),
     'terran': Yield(resources=3, research=2, bonus=6),
-    'toxic': Yield(resources=0, research=1, bonus=1),
+    'toxic': Yield(resources=1, research=1, bonus=1),
     'tundra': Yield(resources=1, research=2, bonus=4),
 }
 

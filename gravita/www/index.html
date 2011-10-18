@@ -7,6 +7,7 @@
     <script src="/static/gravita.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Orbitron:400,500,700' rel='stylesheet' type='text/css'>
     <link href="/static/gravita.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/ship.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onLoad="$gravita.load()">
 
@@ -54,21 +55,57 @@
         {{each(y, row) sectors}}
         <tr>
             {{each(x, sector) row}}
-            <td>
-                <a name="${x},${y}">
+            <td id="sector-${x}-${y}">
                 {{if sector.planet}}
                     <img class="planet" 
                          src="/static/images/planets/${sector.planet.type + (((x+y*2) % 3) + 1)}.png"
+                         width="${Math.round(sector.planet.size * 64)}"
+                         height="${Math.round(sector.planet.size * 64)}"
                          title="${sector.planet.name}"/>
                 {{else}}
                     &nbsp;
                 {{/if}}
-                </a>
             </td>
             {{/each}}
         </tr>
         {{/each}}
     </table>
+    <div class="ships">
+        {{each ships}}
+           {{tmpl($value) "ship-template"}} 
+        {{/each}}
+    </div>
+</script>
+
+<script id="ship-template" type="text/x-jquery-template">
+    <div id="ship-${id}" class="${race}" onClick="alert('${id}')">
+        <div class="C${cls} L${level} V${variant}">
+            <div class="nose"></div>
+            <div class="front">
+                <div class="pylon"></div>
+            </div>
+            <div class="left">
+                <div class="front">
+                    <div class="engine"></div>
+                </div>
+                <div class="rear">
+                    <div class="engine"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="front">
+                    <div class="engine"></div>
+                </div>
+                <div class="rear">
+                    <div class="engine"></div>
+                </div>
+            </div>
+            <div class="rear">
+                <div class="pylon"></div>
+            </div>
+            <div class="tail"></div>
+        </div>
+    </div>
 </script>
 
 <script>
@@ -76,6 +113,7 @@
     $("#title-template").template("title-template");
     $("#create-game-template").template("create-game-template");
     $("#map-template").template("map-template");
+    $("#ship-template").template("ship-template");
 </script>
 
 </body>

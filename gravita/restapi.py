@@ -54,8 +54,16 @@ class RestApi(object):
         game_map = Map(map_width, map_height)
         game_map.add_planets(int(float(params['density']) * map_width * map_height))
         profile.game = Game(game_map)
-        profile.game.add_player(Player(profile.name, races[params['race']]))
+        race = races[params['race']]
+        profile.game.add_player(Player(profile.name, race))
         active_games.append(profile.game)
+        from random import randint, choice
+        from gravita.ship import Ship
+        for i in range(5):
+            x = randint(0, map_width - 1)
+            y = randint(0, map_height - 1)
+            game_map[x, y].ship = Ship(game_map, (x,y), choice(race.ship_specs))
+
         return profile.game.map.as_dict()
 
     @view_config(name='map', renderer='json')
