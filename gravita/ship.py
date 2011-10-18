@@ -45,6 +45,7 @@ class Ship(object):
             'descr': self.specs.descr,
             'id':self.id,
             'race': self.specs.race,
+            'range': self.specs.range,
             'level': self.level, 
             'variant': self.variant,
             'x': self.location[0],

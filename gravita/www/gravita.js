@@ -59,4 +59,43 @@ $gravita.selectShip = function(id) {
         top: ship_offset.top + (ship.height() - selection.height()) / 2,
     });
     selection.css("webkitAnimationName", "spin");
+    $gravita.selectedShip = {ship: $gravita.ships[id], div: ship};
+    $(".map").bind("mouseover", $gravita.followMouse);
+    $(".map").bind("click", $gravita.moveShip);
 }
+
+$gravita.followMouse = function(event) {
+    if ($gravita.selectedShip) {
+        var ship_offset = $gravita.selectedShip.div.offset();
+        var this_offset = $(event.target).offset();
+        var angle = Math.atan2(
+            ship_offset.top - this_offset.top,
+            ship_offset.left - this_offset.left) - Math.PI / 2;
+        $gravita.selectedShip.div.css("-webkit-transition-duration", 
+            ($gravita.selectedShip.ship.cls + 0.5) + "s");
+        $gravita.selectedShip.div.css("-webkit-transform", "rotate(" + angle + "rad)");
+    }
+}
+
+$gravita.moveShip = function(event) {
+    if ($gravita.selectedShip) {
+        var ship_div = $gravita.selectedShip.div;
+        var ship_offset = ship_div.offset();
+        var this_offset = $(event.target).offset();
+        var dx = ship_offset.left - this_offset.left;
+        var dy = ship_offset.top - this_offset.top;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        console.log(Math.floor(dist));
+        console.log($gravita.selectedShip.ship.range * 64);
+        if (Math.floor(dist) <= $gravita.selectedShip.ship.range * 64) {
+            $("#ship-selection").hide();
+            $gravita.selectedShip.div.css("-webkit-transition-duration", 
+                ($gravita.selectedShip.ship.cls + 0.5) * (dist / 128) + "s");
+            ship_div.offset({
+                left: this_offset.left + (ship_div.width() - $(event.target).width()) / 2,
+                top: this_offset.top + (ship_div.height() - $(event.target).height()) / 2,
+            });
+        }
+    }
+}
+
