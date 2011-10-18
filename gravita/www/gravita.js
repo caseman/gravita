@@ -40,10 +40,23 @@ $gravita.placeShips = function() {
     for (id in $gravita.ships) {
         var ship = $gravita.ships[id];
         var sector_offset = $("#sector-" + ship.x + "-" + ship.y).offset();
-        var ship_div = $("#ship-" + id)
+        var ship_div = $("#ship-" + id);
         ship_div.offset({
             left: sector_offset.left + (64 - ship_div.width()) / 2,
             top: sector_offset.top + (64 - ship_div.height()) / 2,
         });
     }
+}
+
+$gravita.selectShip = function(id) {
+    var ship = $("#ship-" + id);
+    var ship_offset = ship.offset();
+    var selection = $("#ship-selection");
+    selection.css("webkitAnimationName", "");
+    selection.show();
+    selection.offset({
+        left: ship_offset.left + (ship.width() - selection.width()) / 2,
+        top: ship_offset.top + (ship.height() - selection.height()) / 2,
+    });
+    selection.css("webkitAnimationName", "spin");
 }
