@@ -57,7 +57,7 @@
         {{each(y, row) sectors}}
         <tr>
             {{each(x, sector) row}}
-            <td id="sector-${x}-${y}">
+            <td id="sector-${x}-${y}" class="sector">
                 {{if sector.planet}}
                     <img class="planet" 
                          src="/static/images/planets/${sector.planet.type + (((x+y*2) % 3) + 1)}.png"

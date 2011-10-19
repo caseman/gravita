@@ -49,6 +49,14 @@ $gravita.placeShips = function() {
 }
 
 $gravita.selectShip = function(id) {
+    $.get('/ship_moves?ship_id=' + id, function(sectors) {
+        $gravita.ship_moves = sectors;
+        $('.map .sector').css('background', 'transparent');
+        for (i = 0; i < sectors.length; i++) {
+            $('#sector-' + sectors[i].x + '-' + sectors[i].y).css('background',
+                'url("/static/images/sector-hilite.png")');
+        }
+    });
     var ship = $("#ship-" + id);
     var ship_offset = ship.offset();
     var selection = $("#ship-selection");
@@ -89,6 +97,7 @@ $gravita.moveShip = function(event) {
         console.log($gravita.selectedShip.ship.range * 64);
         if (Math.floor(dist) <= $gravita.selectedShip.ship.range * 64) {
             $("#ship-selection").hide();
+            $(".map").unbind("mouseover");
             $gravita.selectedShip.div.css("-webkit-transition-duration", 
                 ($gravita.selectedShip.ship.cls + 0.5) * (dist / 128) + "s");
             ship_div.offset({

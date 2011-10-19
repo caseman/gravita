@@ -18,12 +18,12 @@ class Ship(object):
         assert map[location].ship is None, "Ship already at %s" % location
         self.map = map
         self.location = location
-        self.map[location].ship = self
         self.specs = specs
         self.id = hex(id(self))[2:]
         self.level = 0
         self.variant = id(self) % 4
-        #map.ships[self.id] = self
+        map.ships[self.id] = self
+        self.map[location].ship = self
 
     def available_moves(self):
         return [sector for sector in 

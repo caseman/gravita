@@ -27,6 +27,7 @@ class Map(object):
                 self._sectors[x, y] = Sector(x, y)
         self._available_sectors = set(self._sectors)
         self._names = set()
+        self.ships = {}
 
     def __getitem__(self, location):
         return self._sectors[tuple(location)]
@@ -129,7 +130,10 @@ class Sector(object):
         self.location = (x, y)
 
     def as_dict(self):
-        d = {}
+        d = {
+            'x': self.location[0],
+            'y': self.location[1],
+        }
         if self.planet is not None:
             pname, ptype, _, size = self.planet
             d['planet'] = {'name': pname, 'type': ptype, 'size': size}
