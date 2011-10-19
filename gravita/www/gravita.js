@@ -51,10 +51,13 @@ $gravita.placeShips = function() {
 $gravita.selectShip = function(id) {
     $.get('/ship_moves?ship_id=' + id, function(sectors) {
         $gravita.ship_moves = sectors;
-        $('.map .sector').css('background', 'transparent');
+        $('.map .sector')
+            .css('background', 'transparent')
+            .unbind('click');
         for (i = 0; i < sectors.length; i++) {
-            $('#sector-' + sectors[i].x + '-' + sectors[i].y).css('background',
-                'url("/static/images/sector-hilite.png")');
+            $('#sector-' + sectors[i].x + '-' + sectors[i].y)
+                .css('background', 'url("/static/images/sector-hilite.png")')
+                .bind("click", $gravita.moveShip);;
         }
     });
     var ship = $("#ship-" + id);
@@ -69,7 +72,6 @@ $gravita.selectShip = function(id) {
     selection.css("webkitAnimationName", "spin");
     $gravita.selectedShip = {ship: $gravita.ships[id], div: ship};
     $(".map").bind("mouseover", $gravita.followMouse);
-    $(".map").bind("click", $gravita.moveShip);
 }
 
 $gravita.followMouse = function(event) {
@@ -87,24 +89,33 @@ $gravita.followMouse = function(event) {
 
 $gravita.moveShip = function(event) {
     if ($gravita.selectedShip) {
-        var ship_div = $gravita.selectedShip.div;
-        var ship_offset = ship_div.offset();
-        var this_offset = $(event.target).offset();
-        var dx = ship_offset.left - this_offset.left;
-        var dy = ship_offset.top - this_offset.top;
-        var dist = Math.sqrt(dx*dx + dy*dy);
-        console.log(Math.floor(dist));
-        console.log($gravita.selectedShip.ship.range * 64);
-        if (Math.floor(dist) <= $gravita.selectedShip.ship.range * 64) {
+        var target = $(event.target);
+        $.post('/move_ship', {
+            ship_id: $gravita.selectedShip.ship.id,
+            x: target.attr("x"),
+            y: target.attr("y"),
+        }, function(ship) {
+            $gravita.ships[ship.id] = ship;
+            var ship_div = $gravita.selectedShip.div;
+            var ship_offset = ship_div.offset();
+            var sector = $("#sector-" + ship.x + "-" + ship.y);
+            var sector_offset = sector.offset();
+            var dx = ship_offset.left - sector_offset.left;
+            var dy = ship_offset.top - sector_offset.top;
+            var dist = Math.sqrt(dx*dx + dy*dy);
             $("#ship-selection").hide();
             $(".map").unbind("mouseover");
+            $('.map .sector')
+                .css('background', 'transparent')
+                .unbind('click');
             $gravita.selectedShip.div.css("-webkit-transition-duration", 
-                ($gravita.selectedShip.ship.cls + 0.5) * (dist / 128) + "s");
+                (ship.cls + 0.5) * (dist / 128) + "s");
             ship_div.offset({
-                left: this_offset.left + (ship_div.width() - $(event.target).width()) / 2,
-                top: this_offset.top + (ship_div.height() - $(event.target).height()) / 2,
+                left: sector_offset.left + (ship_div.width() - sector.width()) / 2,
+                top: sector_offset.top + (ship_div.height() - sector.height()) / 2,
             });
-        }
+            $gravita.selectedShip = null;
+        });
     }
 }
 

@@ -78,6 +78,13 @@ class RestApi(object):
         sectors = profile.game.map.sectors_in_circle(ship.location, ship.specs.range)
         return [sector.as_dict() for sector in sectors if sector.ship is None]
 
+    @view_config(name='move_ship', renderer='json', request_method='POST')
+    def move_ship(self):
+        profile, is_new = self.get_user_profile()
+        ship = profile.game.map.ships[self.request.POST['ship_id']]
+        location = (int(self.request.POST['x']), int(self.request.POST['y']))
+        ship.move_to(location)
+        return ship.as_dict()
 
 
 
