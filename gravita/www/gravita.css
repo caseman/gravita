@@ -115,6 +115,7 @@ label {
 
 #ship-selection {
     display: none;
+    position: absolute;
     z-index: 999;
     width: 68px;
     height: 68px;

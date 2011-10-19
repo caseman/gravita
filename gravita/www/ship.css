@@ -282,15 +282,15 @@
 }
 
 .naree .C1 {
-	-webkit-transform: scale(0.6, 0.8);
+	-webkit-transform: scale(0.45, 0.7) translate(3px, 12px);
 }
 
 .naree .C2 {
-	-webkit-transform: scale(0.6, 0.8);
+	-webkit-transform: scale(0.55, 0.8) translate(3px, 1px);
 }
 
 .naree .C3 {
-	-webkit-transform: scale(0.65);
+	-webkit-transform: scale(0.6, 0.6) translate(6px, 5px);
 }
 
 .naree .C4 {
@@ -622,7 +622,7 @@
 }
 
 .rone .C0 {
-	-webkit-transform: scale(0.9, 0.9);
+	-webkit-transform: scale(0.7, 0.75) translate(20px, 10px);
 }
 
 .rone .C1 {
@@ -630,18 +630,16 @@
 }
 
 .rone .C2 {
-	-webkit-transform: scale(0.7, 0.8);
+	-webkit-transform: scale(0.5, 0.7) translate(5px, 6px);
 }
 
 .rone .C3 {
 	-webkit-transform: scale(0.85);
 }
 
-/*
 .rone .C4 {
-	-webkit-transform: scale(0.6);
+	-webkit-transform: scale(0.7, 0.65)  translate(5px, -5px);
 }
-*/
 
 .rone .nose {
 	z-index: 101;
