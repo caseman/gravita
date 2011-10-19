@@ -49,7 +49,7 @@ class Human(Race):
     ship_specs = (
         ship.Spec(cls=0, name="Columbus", descr="Scout", race="human", range=6, cost=12),
         ship.Spec(cls=2, name="Pegasus", descr="Cruiser", race="human", range=4, cost=24),
-        ship.Spec(cls=4, name="MacArthur", descr="Frigate", race="human", range=3, cost=42),
+        ship.Spec(cls=3, name="MacArthur", descr="Frigate", race="human", range=3, cost=42),
     )
 
 
@@ -72,8 +72,8 @@ class Naree(Race):
     planet_yields['tundra'] = planet.Yield(resources=3, research=2, bonus=4)
 
     ship_specs = (
-        ship.Spec(cls=0, name="Milfoil", descr="Scout", race="naree", range=6, cost=14),
-        ship.Spec(cls=1, name="Cress", descr="Fighter", race="naree", range=5, cost=20),
+        ship.Spec(cls=1, name="Milfoil", descr="Scout", race="naree", range=6, cost=14),
+        ship.Spec(cls=2, name="Cress", descr="Fighter", race="naree", range=5, cost=20),
         ship.Spec(cls=3, name="Lotus", descr="Attack Ship", race="naree", range=4, cost=50),
     )
 
@@ -100,9 +100,9 @@ class Rone(Race):
     planet_yields['toxic'] = planet.Yield(resources=3, research=2, bonus=4)
 
     ship_specs = (
-        ship.Spec(cls=1, name="Scourge", descr="Fighter", race="rone", range=5, cost=10),
+        ship.Spec(cls=0, name="Scourge", descr="Fighter", race="rone", range=5, cost=10),
         ship.Spec(cls=2, name="Gotha", descr="Bomber", race="rone", range=4, cost=22),
-        ship.Spec(cls=3, name="Draken", descr="Destroyer", race="rone", range=4, cost=39),
+        ship.Spec(cls=4, name="Draken", descr="Dreadnought", race="rone", range=4, cost=39),
     )
 
 
