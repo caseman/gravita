@@ -22,7 +22,7 @@ class Ship(object):
         self.specs = specs
         self.id = hex(id(self))[2:]
         self.level = 0
-        self.variant = id(self) % 3
+        self.variant = id(self) % 4
         #map.ships[self.id] = self
 
     def available_moves(self):
