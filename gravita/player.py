@@ -15,9 +15,11 @@ class Player(object):
 
     actions_per_turn = 1
 
-    def __init__(self, name, race):
+    def __init__(self, number, name, race, color):
+        self.number = number
         self.name = name
         self.race = race
+        self.color = color
         self.planets = set()
         self.ships = set()
         self.to_move = set()
@@ -34,4 +36,12 @@ class Player(object):
         resources, research = self.race.total_yields(self.planets)
         self.resources += resources
         self.research += research
+
+    def as_dict(self):
+        return {
+            'number': self.number,
+            'name': self.name,
+            'race': self.race.name,
+            'color': self.color,
+            }
 

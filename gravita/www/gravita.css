@@ -67,6 +67,7 @@ form > .group {
     background: url('/static/images/highlight.png');
     box-shadow: 0 0 50px #866;
     float: left;
+    height: 9em;
 }
 
 form > .group > .title {
@@ -74,9 +75,16 @@ form > .group > .title {
     top: -10px;
 }
 
+form .subgroup {
+    position: relative;
+    float: left;
+    top: -10px;
+}
+
 label {
     margin: 0.5em;
     display: block;
+    color: white;
     text-shadow: 0 0 2px black;
 }
 

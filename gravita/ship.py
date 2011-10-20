@@ -14,13 +14,14 @@ from collections import namedtuple
 
 class Ship(object):
 
-    def __init__(self, map, location, specs):
+    def __init__(self, owner, map, location, specs):
         assert map[location].ship is None, "Ship already at %s" % location
+        self.owner = owner
         self.map = map
         self.location = location
         self.specs = specs
         self.id = hex(id(self))[2:]
-        self.level = 0
+        self.level = id(owner) % 5
         self.variant = id(self) % 4
         map.ships[self.id] = self
         self.map[location].ship = self
@@ -40,6 +41,7 @@ class Ship(object):
 
     def as_dict(self):
         return {
+            'owner': self.owner.as_dict(),
             'cls': self.specs.cls, 
             'name': self.specs.name,
             'descr': self.specs.descr,

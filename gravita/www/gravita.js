@@ -16,6 +16,9 @@ $gravita.load = function() {
             $gravita.showTmpl("title-template", user);
         } else {
             $.get('/map', '', $gravita.renderMap);
+            $.get('/players', '', function(players) {
+                $gravita.players = players;
+            });
         }
     });
 }
@@ -23,7 +26,10 @@ $gravita.load = function() {
 $gravita.createGame = function() {
     $.post('/create_game',
         $("#create-game-form").serialize(),
-        $gravita.renderMap);
+        function(game) {
+            $gravita.players = game.players;
+            $gravita.renderMap(game.map);
+        });
 }
 
 $gravita.renderMap = function(map) {

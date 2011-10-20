@@ -55,21 +55,27 @@ class RestApi(object):
         game_map.add_planets(int(float(params['density']) * map_width * map_height))
         profile.game = Game(game_map)
         race = races[params['race']]
-        profile.game.add_player(Player(profile.name, race))
+        player = Player(1, profile.name, race, params['color'])
+        profile.game.add_player(player)
         active_games.append(profile.game)
         from random import randint, choice
         from gravita.ship import Ship
         for i in range(5):
             x = randint(0, map_width - 1)
             y = randint(0, map_height - 1)
-            game_map[x, y].ship = Ship(game_map, (x,y), choice(race.ship_specs))
+            game_map[x, y].ship = ship = Ship(player, game_map, (x,y), choice(race.ship_specs))
 
-        return profile.game.map.as_dict()
+        return profile.game.as_dict()
 
     @view_config(name='map', renderer='json')
     def map(self):
         profile, is_new = self.get_user_profile()
         return profile.game.map.as_dict()
+
+    @view_config(name='players', renderer='json')
+    def players(self):
+        profile, is_new = self.get_user_profile()
+        players = [player.as_dict() for player in profile.game.players]
 
     @view_config(name='ship_moves', renderer='json')
     def ship_moves(self):
@@ -80,9 +86,10 @@ class RestApi(object):
 
     @view_config(name='move_ship', renderer='json', request_method='POST')
     def move_ship(self):
+        params = self.request.POST
         profile, is_new = self.get_user_profile()
-        ship = profile.game.map.ships[self.request.POST['ship_id']]
-        location = (int(self.request.POST['x']), int(self.request.POST['y']))
+        ship = profile.game.map.ships[params['ship_id']]
+        location = (int(params['x']), int(params['y']))
         ship.move_to(location)
         return ship.as_dict()
 
