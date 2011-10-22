@@ -81,7 +81,7 @@ form .subgroup {
     top: -10px;
 }
 
-label {
+.panel label {
     margin: 0.5em;
     display: block;
     color: white;
@@ -91,9 +91,11 @@ label {
 .map {
     table-layout: fixed;
     border-collapse: collapse;
+    margin-bottom: 6em;
 }
 
 .map td {
+    position: relative;
     width: 64px;
     height: 64px;
     text-align: center;
@@ -132,4 +134,102 @@ label {
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
 }
+
+#pallette {
+    position: fixed;
+    width: 8em;
+    height: 3em;
+    top: 100%;
+    margin-top: -3em;
+    left: 100%;
+    margin-left: -9.25em;
+    padding: 0.5em 0.5em 0.5em 0.75em;
+    z-index: 500;
+    -moz-border-radius: 10px 0 0 0;
+    -webkit-border-radius: 10px 0 0 0;
+    border-radius: 10px 0 0 0;
+    background: #959595; /* Old browsers */
+    background: -moz-linear-gradient(top, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#959595), color-stop(46%,#0d0d0d), color-stop(50%,#010101), color-stop(53%,#0a0a0a), color-stop(76%,#4e4e4e), color-stop(87%,#383838), color-stop(100%,#1b1b1b)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* IE10+ */
+    background: linear-gradient(top, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=0 ); /* IE6-9 */
+}
+
+button#end-turn {
+    width: 100%;
+    font-size: 1em;
+    font-family: 'Orbitron', sans-serif;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background: rgb(246,248,249); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(246,248,249,1) 0%, rgba(229,235,238,1) 50%, rgba(215,222,227,1) 51%, rgba(245,247,249,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,248,249,1)), color-stop(50%,rgba(229,235,238,1)), color-stop(51%,rgba(215,222,227,1)), color-stop(100%,rgba(245,247,249,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* IE10+ */
+    background: linear-gradient(top, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 ); /* IE6-9 */
+}
+
+button#end-turn:active {
+    background: darkgray;
+}
+
+button#end-turn label {
+    position: relative;
+    top: 2px;
+}
+
+button#end-turn:active label {
+    top: 4px;
+    left: 2px;
+}
+
+.callout {
+    position: absolute;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: url('/static/images/highlight.png');
+    padding: 10px;
+    visibility: hidden;
+    min-width: 10em;
+    font-size: 85%;
+    text-align: left;
+    left: 115%;
+    top: 10%;
+    z-index: 400;
+}
+
+.callout h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.callout * {
+    position: relative;
+    top: -1.5em;
+}
+
+.callout:before {
+    content:'';
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+    left: -25px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent; 
+    border-right:15px solid white;
+    opacity: 0.35;
+}
+
+.planet:hover .callout {
+    visibility: visible;
+}
+
 

@@ -105,7 +105,7 @@ class Map(object):
                         pass
         return sectors
 
-    def as_dict(self):
+    def as_dict(self, race=None):
         d = {}
         d['width'] = self.width
         d['height'] = self.height
@@ -115,7 +115,7 @@ class Map(object):
             row = []
             for x in range(self.width):
                 sec = self._sectors[x, y]
-                row.append(sec.as_dict())
+                row.append(sec.as_dict(race))
                 if sec.ship is not None:
                     ships[sec.ship.id] = sec.ship.as_dict()
             sectors.append(row)
@@ -129,14 +129,23 @@ class Sector(object):
         self.ship = None
         self.location = (x, y)
 
-    def as_dict(self):
+    def as_dict(self, race=None):
+        if race is not None:
+            yields = race.planet_yields
+        else:
+            yields = planet.base_yields
         d = {
             'x': self.location[0],
             'y': self.location[1],
         }
         if self.planet is not None:
             pname, ptype, _, size = self.planet
-            d['planet'] = {'name': pname, 'type': ptype, 'size': size}
+            d['planet'] = {
+                'name': pname, 
+                'type': ptype, 
+                'size': size,
+                'resources':yields[ptype].resources,
+                }
         return d
 
     def __repr__(self):

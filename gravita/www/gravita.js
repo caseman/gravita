@@ -15,9 +15,9 @@ $gravita.load = function() {
         if (!user.in_game) {
             $gravita.showTmpl("title-template", user);
         } else {
-            $.get('/map', '', $gravita.renderMap);
-            $.get('/players', '', function(players) {
-                $gravita.players = players;
+            $.get('/game', '', function(game) {
+                $gravita.renderMap(game.map);
+                $gravita.players = game.players;
             });
         }
     });
@@ -55,29 +55,30 @@ $gravita.placeShips = function() {
 }
 
 $gravita.selectShip = function(id) {
-    $.get('/ship_moves?ship_id=' + id, function(sectors) {
-        $gravita.ship_moves = sectors;
+    $.get('/ship_moves?ship_id=' + id, function(result) {
+        $gravita.ships[id] = result.ship;
         $('.map .sector')
             .css('background', 'transparent')
             .unbind('click');
-        for (i = 0; i < sectors.length; i++) {
-            $('#sector-' + sectors[i].x + '-' + sectors[i].y)
+        for (i = 0; i < result.sectors.length; i++) {
+            $('#sector-' + result.sectors[i].x + '-' + result.sectors[i].y)
                 .css('background', 'url("/static/images/sector-hilite.png")')
                 .bind("click", $gravita.moveShip);;
         }
+        var ship = $("#ship-" + id);
+        var ship_offset = ship.offset();
+        var selection = $("#ship-selection");
+        selection.css("webkitAnimationName", "");
+        selection.show();
+        selection.offset({
+            left: ship_offset.left + (ship.width() - selection.width()) / 2,
+            top: ship_offset.top + (ship.height() - selection.height()) / 2,
+        });
+        selection.css("webkitAnimationName", "spin");
+        $gravita.selectedShip = {ship: $gravita.ships[id], div: ship};
+        $(".map").bind("mouseover", $gravita.followMouse);
+        $gravita.showSelectedShip();
     });
-    var ship = $("#ship-" + id);
-    var ship_offset = ship.offset();
-    var selection = $("#ship-selection");
-    selection.css("webkitAnimationName", "");
-    selection.show();
-    selection.offset({
-        left: ship_offset.left + (ship.width() - selection.width()) / 2,
-        top: ship_offset.top + (ship.height() - selection.height()) / 2,
-    });
-    selection.css("webkitAnimationName", "spin");
-    $gravita.selectedShip = {ship: $gravita.ships[id], div: ship};
-    $(".map").bind("mouseover", $gravita.followMouse);
 }
 
 $gravita.followMouse = function(event) {

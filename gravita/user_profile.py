@@ -33,6 +33,7 @@ class UserProfile(object):
                 break
         self.name = self.generate_name()
         self.game = None
+        self.player = None
 
     @classmethod
     def load(self, profile_id):

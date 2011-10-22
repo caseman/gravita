@@ -38,11 +38,11 @@ class Game(object):
         for player in self.players:
             player.begin_turn()
 
-    def as_dict(self):
+    def as_dict(self, player):
         return {
             'turn': self.turn,
             'in_progress': self.in_progress,
-            'map': self.map.as_dict(),
+            'map': self.map.as_dict(player.race),
             'players': [player.as_dict() for player in self.players]
             }
 

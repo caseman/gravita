@@ -78,11 +78,17 @@
             {{each(x, sector) row}}
             <td id="sector-${x}-${y}" class="sector" x="${x}" y="${y}">
                 {{if sector.planet}}
-                    <img class="planet" 
+                <div class="planet">
+                    <img
                          src="/static/images/planets/${sector.planet.type + (((x+y*2) % 3) + 1)}.png"
                          width="${Math.round(sector.planet.size * 64)}"
-                         height="${Math.round(sector.planet.size * 64)}"
-                         title="${sector.planet.name}"/>
+                         height="${Math.round(sector.planet.size * 64)}"/>
+                    <div class="callout">
+                        <h3>${sector.planet.name}</h3>
+                        <div>Type: ${sector.planet.type}</div>
+                        <div>Resources: ${sector.planet.resources}</div>
+                    </div>
+                </div>
                 {{else}}
                     &nbsp;
                 {{/if}}
@@ -96,11 +102,15 @@
            {{tmpl($value) "ship-template"}} 
         {{/each}}
     </div>
+    <div id="pallette">
+        <button id="end-turn" onClick="$gravita.endTurn()"><label>End Turn</label></button>
+    </div>
 </script>
 
 <script id="ship-template" type="text/x-jquery-template">
-    <div id="ship-${id}" class="${race}" onClick="$gravita.selectShip('${id}')">
+    <div id="ship-${id}" class="ship ${race}" onClick="$gravita.selectShip('${id}')">
         <div class="C${cls} L${level} V${variant}">
+            <!--<div class="glow ${owner.color}" style="background-image: -webkit-radial-gradient(circle, ${owner.color}, transparent);"></div>-->
             <div class="nose"></div>
             <div class="front">
                 <div class="pylon"></div>
