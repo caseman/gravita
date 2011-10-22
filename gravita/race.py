@@ -46,11 +46,7 @@ class Human(Race):
     planet_yields['terran'] = planet.Yield(resources=5, research=3, bonus=6)
     planet_yields['desert'] = planet.Yield(resources=3, research=2, bonus=4)
 
-    ship_specs = (
-        ship.Spec(cls=0, name="Columbus", descr="Scout", race="human", range=6, cost=12),
-        ship.Spec(cls=2, name="Pegasus", descr="Cruiser", race="human", range=4, cost=24),
-        ship.Spec(cls=3, name="MacArthur", descr="Frigate", race="human", range=3, cost=42),
-    )
+    ship_specs = (ship.Columbus(), ship.Pegasus(), ship.MacArthur())
 
 
 class Naree(Race):
@@ -71,11 +67,7 @@ class Naree(Race):
     planet_yields['ocean'] = planet.Yield(resources=5, research=3, bonus=6)
     planet_yields['tundra'] = planet.Yield(resources=3, research=2, bonus=4)
 
-    ship_specs = (
-        ship.Spec(cls=1, name="Milfoil", descr="Scout", race="naree", range=6, cost=14),
-        ship.Spec(cls=2, name="Cress", descr="Fighter", race="naree", range=5, cost=20),
-        ship.Spec(cls=3, name="Lotus", descr="Attack Ship", race="naree", range=4, cost=50),
-    )
+    ship_specs = (ship.Milfoil(), ship.Cress(), ship.Lotus())
 
 
 class Rone(Race):

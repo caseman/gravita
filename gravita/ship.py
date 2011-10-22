@@ -100,7 +100,7 @@ class Weapon(object):
     def as_dict(self):
         return dictify(self, Weapon)
 
-# Rone ship specs
+## Rone ship specs ##
 
 class Scourge(Spec):
     cls = 0
@@ -154,7 +154,7 @@ class Draken(Spec):
     descr="Dreadnought"
     race = "rone"
     cost = 39
-    range = 4
+    range = 3
     move_ap = 5
     max_ap = 25
     max_hp = 70
@@ -176,8 +176,149 @@ class Draken(Spec):
 
     weapons = [_cannon(), _turret()]
 
+## Human Ship Specs ##
 
-Spec = namedtuple("Spec", "cls name descr race cost range") # max_hp max_ap move_ap weapons")
+class Columbus(Spec):
+    cls = 0
+    descr="Scout"
+    race = "human"
+    cost = 12
+    range = 5
+    move_ap = 3
+    max_ap = 16
+    max_hp = 19
 
-Weapon = namedtuple("WeaponSpec", "name dmg_type dmg_level use_ap max_use is_offense is_defense")
+    class _laser(Weapon):
+        name = "Laser Cannon"
+        dmg_type = "thermal"
+        dmg_level = 3
+        max_use = 3
+        use_ap = 1
+
+    weapons = [_laser()]
+
+class Pegasus(Spec):
+    cls = 2
+    descr="Cruiser"
+    race = "human"
+    cost = 25
+    range = 4
+    move_ap = 4
+    max_ap = 16
+    max_hp = 35
+
+    class _phaser(Weapon):
+        name = "Phaser"
+        dmg_type = "electromag"
+        dmg_level = 5
+        max_use = 3
+        use_ap = 3
+
+    class _missile(Weapon):
+        name = "Concussion Missle"
+        dmg_type = "impact"
+        dmg_level = 8
+        max_use = 2
+        use_ap = 4
+        is_ranged = True
+
+    weapons = [_phaser(), _missile()]
+
+class MacArthur(Spec):
+    cls = 3
+    descr="Frigate"
+    race = "human"
+    cost = 42
+    range = 3
+    move_ap = 5
+    max_ap = 22
+    max_hp = 56
+
+    class _railgun(Weapon):
+        name = "Rail Gun"
+        dmg_type = "impact"
+        dmg_level = 10
+        max_use = 3
+        use_ap = 6
+        is_ranged = True
+
+    class _torpedo(Weapon):
+        name = "Axion Torpedo"
+        dmg_type = "electromag"
+        dmg_level = 13
+        max_use = 2
+        use_ap = 10
+        is_ranged = True
+        is_defense = False
+
+    weapons = [_railgun(), _torpedo()]
+
+## Naree Ship Specs ##
+
+class Milfoil(Spec):
+    cls = 0
+    descr="Scout"
+    race = "naree"
+    cost = 15
+    range = 6
+    move_ap = 2
+    max_ap = 15
+    max_hp = 16
+
+    class _bloom(Weapon):
+        name = "Photon Bloom"
+        dmg_type = "electromag"
+        dmg_level = 2
+        max_use = 5
+        use_ap = 1
+        is_ranged = True
+
+    weapons = [_bloom()]
+
+class Cress(Spec):
+    cls = 1
+    descr="Fighter"
+    race = "naree"
+    cost = 29
+    range = 5
+    move_ap = 2
+    max_ap = 20
+    max_hp = 21
+
+    class _beam(Weapon):
+        name = "Lepton Beam"
+        dmg_type = "thermal"
+        dmg_level = 4
+        max_use = 4
+        use_ap = 2
+
+    weapons = [_beam()]
+
+class Lotus(Spec):
+    cls = 3
+    descr="Escort Ship"
+    race = "naree"
+    cost = 53
+    range = 4
+    move_ap = 4
+    max_ap = 30
+    max_hp = 45
+
+    class _cannon(Weapon):
+        name = "Fullerene Pulse Cannon"
+        dmg_type = "impact"
+        dmg_level = 8
+        max_use = 4
+        use_ap = 4
+        is_ranged = True
+
+    class _nova(Weapon):
+        name = "Energy Nova"
+        dmg_type = "electromag"
+        dmg_level = 10
+        max_use = 3
+        use_ap = 5
+
+    weapons = [_cannon(), _nova()]
+
 
