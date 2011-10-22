@@ -99,11 +99,7 @@ class Rone(Race):
     planet_yields['swamp'] = planet.Yield(resources=5, research=3, bonus=6)
     planet_yields['toxic'] = planet.Yield(resources=3, research=2, bonus=4)
 
-    ship_specs = (
-        ship.Spec(cls=0, name="Scourge", descr="Fighter", race="rone", range=5, cost=10),
-        ship.Spec(cls=2, name="Gotha", descr="Bomber", race="rone", range=4, cost=22),
-        ship.Spec(cls=4, name="Draken", descr="Dreadnought", race="rone", range=4, cost=39),
-    )
+    ship_specs = (ship.Scourge(), ship.Gotha(), ship.Draken())
 
 
 races = {
