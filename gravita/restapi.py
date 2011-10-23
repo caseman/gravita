@@ -92,6 +92,13 @@ class RestApi(object):
         ship.move_to(location)
         return ship.as_dict()
 
+    @view_config(name='end_turn', renderer='json', request_method='POST')
+    def end_turn(self):
+        params = self.request.POST
+        profile, is_new = self.get_user_profile()
+        profile.game.begin_turn()
+        return {}
+
 
 
 

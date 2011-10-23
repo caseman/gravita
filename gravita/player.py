@@ -31,11 +31,12 @@ class Player(object):
         """Begin a new turn for the player, update the resources,
         research, move, and action counts
         """
-        self.to_move = self.ships.copy()
         self.actions_remaining = self.actions_per_turn
-        resources, research = self.race.total_yields(self.planets)
+        resources, research = self.race.total_yield(self.planets)
         self.resources += resources
         self.research += research
+        for ship in self.ships:
+            ship.begin_turn()
 
     def as_dict(self):
         return {

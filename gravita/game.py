@@ -33,7 +33,7 @@ class Game(object):
 
     def begin_turn(self):
         """Begin a new turn in the game"""
-        assert len(self.players) == 2, 'Too few players to start game'
+        #assert len(self.players) == 2, 'Too few players to start game'
         self.turn += 1
         for player in self.players:
             player.begin_turn()

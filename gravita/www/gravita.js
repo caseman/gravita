@@ -32,6 +32,10 @@ $gravita.createGame = function() {
         });
 }
 
+$gravita.endTurn = function() {
+    $.post('/end_turn');
+}
+
 $gravita.renderMap = function(map) {
     $gravita.ships = map.ships;
     $gravita.showTmpl("map-template", map);

@@ -19,6 +19,7 @@ class Ship(object):
     def __init__(self, owner, map, location, specs):
         assert map[location].ship is None, "Ship already at %s" % location
         self.owner = owner
+        owner.ships.add(self)
         self.map = map
         self.location = location
         self.specs = specs
