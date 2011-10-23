@@ -11,6 +11,7 @@
 #
 #############################################################################
 import json
+import math
 from collections import namedtuple
 
 class Ship(object):
@@ -28,15 +29,22 @@ class Ship(object):
         self.map[location].ship = self
         self.hp = self.specs.max_hp
         self.ap = self.specs.max_ap
+        self.remaining_range = float(self.specs.range)
 
     def available_moves(self):
+        range = min(int(self.remaining_range), self.ap // self.specs.move_ap)
         return [sector for sector in 
-            self.map.sectors_in_circle(self.location, self.specs.range)
+            self.map.sectors_in_circle(self.location, range)
             if sector.ship is None]
 
     def move_to(self, location):
         assert self.map[location].ship is None, "Ship already at %s" % location
         old_location = self.location
+        dx = location[0] - old_location[0]
+        dy = location[1] - old_location[1]
+        dist = math.sqrt(dx*dx + dy*dy)
+        self.remaining_range = max(0, self.remaining_range - dist)
+        self.ap = max(0, self.ap - int(dist) * self.specs.move_ap)
         self.map[old_location].ship = None
         self.map[location].ship = self
         self.location = location
@@ -44,6 +52,7 @@ class Ship(object):
 
     def begin_turn(self):
         self.ap = self.specs.max_ap
+        self.remaining_range = self.specs.range
 
     def damage(self, amount):
         self.hp = max(0, self.hp - amount)

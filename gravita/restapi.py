@@ -77,7 +77,7 @@ class RestApi(object):
     def ship_moves(self):
         profile, is_new = self.get_user_profile()
         ship = profile.game.map.ships[self.request.GET['ship_id']]
-        sectors = profile.game.map.sectors_in_circle(ship.location, ship.specs.range)
+        sectors = ship.available_moves()
         return {
             'ship': ship.as_dict(),
             'sectors': [sector.as_dict() for sector in sectors if sector.ship is None],
