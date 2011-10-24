@@ -277,15 +277,15 @@
 	width: 76px;
 }
 
-.naree .C0 {
+.naree .CX {
 	-webkit-transform: translateX(11px) scale(0.6, 0.9);
 }
 
-.naree .C1 {
+.naree .C0 {
 	-webkit-transform: scale(0.45, 0.7) translate(3px, 12px);
 }
 
-.naree .C2 {
+.naree .C1 {
 	-webkit-transform: scale(0.55, 0.8) translate(3px, 1px);
 }
 
@@ -302,7 +302,7 @@
 	z-index: 101;
 }
 
-.naree .C0 .nose {
+.naree .CX .nose {
 	left: -1px;
 	width: 14px;
 	height: 42px;
@@ -310,7 +310,7 @@
 	-webkit-transform: scale(1.1, 0.9);
 }
 
-.naree .C0 .tail {
+.naree .CX .tail {
 	width: 13px;
 	height: 42px;
 	left: 15px;
@@ -318,7 +318,7 @@
 	-webkit-transform: scale(1.1, 0.9);
 }
 
-.naree .C1 .nose {
+.naree .C0 .nose {
 	width: 30px;
 	height: 40px;
 	left: 8px;
@@ -326,7 +326,7 @@
 }
 
 
-.naree .C1 .tail {
+.naree .C0 .tail {
 	width: 48px;
 	height: 49px;
 	top: 3px;
@@ -335,14 +335,14 @@
 	-webkit-transform: scale(1.0, 0.3);
 }
 
-.naree .C2 .nose {
+.naree .C1 .nose {
 	width: 34px;
 	height: 46px;
 	left: 8px;
 	background-position: -9px -26px;
 }
 
-.naree .C2 .tail {
+.naree .C1 .tail {
 	width: 48px;
 	height: 49px;
 	top: 13px;
@@ -404,10 +404,20 @@
 	background-position: -104px -3px;
 }
 
-.naree .C0 .left .engine {
+.naree .CX .left .engine {
 	-webkit-transform: scale(0.75, 0.5);
 	top: 33px;
 	left: 2px;
+}
+
+.naree .CX .right .engine {
+	display: none;
+}
+
+.naree .C0 .left .engine {
+	-webkit-transform: scale(1.2, 0.5);
+	top: 33px;
+	left: 12px;
 }
 
 .naree .C0 .right .engine {
@@ -415,23 +425,13 @@
 }
 
 .naree .C1 .left .engine {
-	-webkit-transform: scale(1.2, 0.5);
-	top: 33px;
-	left: 12px;
-}
-
-.naree .C1 .right .engine {
-	display: none;
-}
-
-.naree .C2 .left .engine {
 	-webkit-transform: scale(0.8, 0.6);
 	top: 43px;
 	left: 3px;
 	z-index: 105;
 }
 
-.naree .C2 .right .engine {
+.naree .C1 .right .engine {
 	-webkit-transform: scale(0.8, 0.6);
 	top: 43px;
 	left: 24px;
@@ -548,37 +548,37 @@
 	background-position: -71px -27px;
 }
 
-.naree .C0 .front .pylon {
+.naree .CX .front .pylon {
 	top: 9px;
 	left: -6px;
 	-webkit-transform: scale(1, 0.7);
 }
 	
-.naree .C0 .rear .pylon {
+.naree .CX .rear .pylon {
 	top: 9px;
 	left: 16px;
 	-webkit-transform: scale(1, 0.7);
 }
 
-.naree .C1 .front .pylon {
+.naree .C0 .front .pylon {
 	top: 10px;
 	left: -4px;
 	-webkit-transform: scale(1, 0.6);
 }
 	
-.naree .C1 .rear .pylon {
+.naree .C0 .rear .pylon {
 	top: 10px;
 	left: 33px;
 	-webkit-transform: scale(1, 0.6);
 }
 
-.naree .C2 .front .pylon {
+.naree .C1 .front .pylon {
 	top: 16px;
 	left: -7px;
 	-webkit-transform: scale(1, 0.75);
 }
 	
-.naree .C2 .rear .pylon {
+.naree .C1 .rear .pylon {
 	top: 16px;
 	left: 40px;
 	-webkit-transform: scale(1, 0.75);
